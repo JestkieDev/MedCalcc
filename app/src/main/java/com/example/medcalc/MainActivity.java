@@ -1,6 +1,7 @@
 package com.example.medcalc;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

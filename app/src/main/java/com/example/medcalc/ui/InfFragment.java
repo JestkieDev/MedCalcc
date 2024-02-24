@@ -27,6 +27,7 @@ public class InfFragment extends Fragment {
         EditText dozET = view.findViewById(R.id.dozET);
         Button okinfBTN = view.findViewById(R.id.okinfBTN);
         TextView resinfTV = view.findViewById(R.id.resinfTV);
+        Button backBTN = view.findViewById(R.id.backinfBTN);
 
         okinfBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +39,15 @@ public class InfFragment extends Fragment {
                 double res = (double) minf*doz / (mg* (1000.0/ml))*60;
                 DecimalFormat df = new DecimalFormat("###.##");
                 resinfTV.setText(df.format(res) + " мл/ч");
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                    getParentFragmentManager().popBackStack();
+                }
             }
         });
         return view;

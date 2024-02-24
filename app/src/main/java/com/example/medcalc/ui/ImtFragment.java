@@ -25,6 +25,7 @@ public class ImtFragment extends Fragment {
         EditText hET = view.findViewById(R.id.hET);
         Button okimtBTN = view.findViewById(R.id.okimtBTN);
         TextView reimtTV = view.findViewById(R.id.resimtTV);
+        Button backBTN = view.findViewById(R.id.backimtBTN);
 
         okimtBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +35,15 @@ public class ImtFragment extends Fragment {
                 double res = mass/Math.pow(height, 2);
                 DecimalFormat df = new DecimalFormat("###.#");
                 reimtTV.setText(df.format(res));
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                    getParentFragmentManager().popBackStack();
+                }
             }
         });
 

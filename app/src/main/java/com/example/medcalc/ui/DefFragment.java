@@ -25,6 +25,7 @@ public class DefFragment extends Fragment {
         EditText mdET = view.findViewById(R.id.mdET);
         Button okdefBTN = view.findViewById(R.id.okdefBTN);
         TextView resdefTV = view.findViewById(R.id.resdefTV);
+        Button backBTN = view.findViewById(R.id.backdefBTN);
 
         okdefBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,14 @@ public class DefFragment extends Fragment {
                 }
 
 
+            }
+        });
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                    getParentFragmentManager().popBackStack();
+                }
             }
         });
         return view;

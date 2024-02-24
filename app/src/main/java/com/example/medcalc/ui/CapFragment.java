@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.medcalc.R;
+import com.example.medcalc.ui.home.HomeFragment;
 
 public class CapFragment extends Fragment {
     @Nullable
@@ -23,6 +24,7 @@ public class CapFragment extends Fragment {
         EditText mcapET = view.findViewById(R.id.mcapET);
         Button okcapBTN = view.findViewById(R.id.okcapBTN);
         TextView rescapTV = view.findViewById(R.id.rescapTV);
+        Button backBTN = view.findViewById(R.id.backcapBTN);
 
         okcapBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +36,16 @@ public class CapFragment extends Fragment {
 
             }
         });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                    getParentFragmentManager().popBackStack();
+                }
+            }
+        });
+
         return view;
     }
 }
