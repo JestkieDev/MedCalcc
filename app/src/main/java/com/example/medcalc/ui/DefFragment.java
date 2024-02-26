@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,22 +58,26 @@ public class DefFragment extends Fragment {
         okdefBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double cal = Double.parseDouble(calET.getText().toString());
-                int md = Integer.parseInt(mdET.getText().toString());
-                double res = (double) (5 - cal) * 0.2 * md;
-                DecimalFormat df = new DecimalFormat("###.#");
-                if (res > 0){
-                    resdefTV.setText(df.format(res) + " ммоль(мл)");
-                } else if (res == 0) {
-                    resdefTV.setText("Нормокалиемия");
-                } else if (res < 0) {
-                    resdefTV.setText("Гиперкалиемия");
-                }
-                if (defSPN.getSelectedItem().toString() != null){
-                    List<Pacient> pacients1 = new ArrayList<>();
-                    pacients1.addAll(pacientDao.getWithName(defSPN.getSelectedItem().toString()));
-                    pacients1.get(0).def = res;
-                    pacientDao.update(pacients1.get(0));
+                if(calET.getText().toString().isEmpty() == false & mdET.getText().toString().isEmpty() == false) {
+                    double cal = Double.parseDouble(calET.getText().toString());
+                    int md = Integer.parseInt(mdET.getText().toString());
+                    double res = (double) (5 - cal) * 0.2 * md;
+                    DecimalFormat df = new DecimalFormat("###.#");
+                    if (res > 0){
+                        resdefTV.setText(df.format(res) + " ммоль(мл)");
+                    } else if (res == 0) {
+                        resdefTV.setText("Нормокалиемия");
+                    } else if (res < 0) {
+                        resdefTV.setText("Гиперкалиемия");
+                    }
+                    if (defSPN.getSelectedItem().toString() != null){
+                        List<Pacient> pacients1 = new ArrayList<>();
+                        pacients1.addAll(pacientDao.getWithName(defSPN.getSelectedItem().toString()));
+                        pacients1.get(0).def = res;
+                        pacientDao.update(pacients1.get(0));
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Введите значения!", Toast.LENGTH_LONG).show();
                 }
             }
         });

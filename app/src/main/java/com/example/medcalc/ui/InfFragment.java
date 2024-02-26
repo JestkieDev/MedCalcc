@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,19 +58,24 @@ public class InfFragment extends Fragment {
         okinfBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int mg = Integer.parseInt(mgET.getText().toString());
-                int ml = Integer.parseInt(mlET.getText().toString());
-                int minf = Integer.parseInt(minfET.getText().toString());
-                int doz = Integer.parseInt(dozET.getText().toString());
-                double res = (double) minf*doz / (mg* (1000.0/ml))*60;
-                DecimalFormat df = new DecimalFormat("###.##");
-                resinfTV.setText(df.format(res) + " мл/ч");
-                if (infSPN.getSelectedItem().toString() != null){
-                    List<Pacient> pacients1 = new ArrayList<>();
-                    pacients1.addAll(pacientDao.getWithName(infSPN.getSelectedItem().toString()));
-                    pacients1.get(0).nf = res;
-                    pacientDao.update(pacients1.get(0));
+                if (mgET.getText().toString().isEmpty() == false & mlET.getText().toString().isEmpty() == false & minfET.getText().toString().isEmpty() == false & dozET.getText().toString().isEmpty() == false){
+                    int mg = Integer.parseInt(mgET.getText().toString());
+                    int ml = Integer.parseInt(mlET.getText().toString());
+                    int minf = Integer.parseInt(minfET.getText().toString());
+                    int doz = Integer.parseInt(dozET.getText().toString());
+                    double res = (double) minf*doz / (mg* (1000.0/ml))*60;
+                    DecimalFormat df = new DecimalFormat("###.##");
+                    resinfTV.setText(df.format(res) + " мл/ч");
+                    if (infSPN.getSelectedItem().toString() != null){
+                        List<Pacient> pacients1 = new ArrayList<>();
+                        pacients1.addAll(pacientDao.getWithName(infSPN.getSelectedItem().toString()));
+                        pacients1.get(0).nf = res;
+                        pacientDao.update(pacients1.get(0));
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Введите значения!", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 

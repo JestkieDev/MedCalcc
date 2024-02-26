@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,16 +61,20 @@ public class ImtFragment extends Fragment {
         okimtBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int mass = Integer.parseInt(mET.getText().toString());
-                double height = (double) Integer.parseInt(hET.getText().toString()) / 100;
-                double res = mass/Math.pow(height, 2);
-                DecimalFormat df = new DecimalFormat("###.#");
-                reimtTV.setText(df.format(res));
-                if (imtSPN.getSelectedItem().toString() != null){
-                    List<Pacient> pacients1 = new ArrayList<>();
-                    pacients1.addAll(pacientDao.getWithName(imtSPN.getSelectedItem().toString()));
-                    pacients1.get(0).imt = res;
-                    pacientDao.update(pacients1.get(0));
+                if (mET.getText().toString().isEmpty() == false & hET.getText().toString().isEmpty() == false){
+                    int mass = Integer.parseInt(mET.getText().toString());
+                    double height = (double) Integer.parseInt(hET.getText().toString()) / 100;
+                    double res = mass/Math.pow(height, 2);
+                    DecimalFormat df = new DecimalFormat("###.#");
+                    reimtTV.setText(df.format(res));
+                    if (imtSPN.getSelectedItem().toString() != null){
+                        List<Pacient> pacients1 = new ArrayList<>();
+                        pacients1.addAll(pacientDao.getWithName(imtSPN.getSelectedItem().toString()));
+                        pacients1.get(0).imt = res;
+                        pacientDao.update(pacients1.get(0));
+                    } else {
+                        Toast.makeText(getContext(), "Введите значения!", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

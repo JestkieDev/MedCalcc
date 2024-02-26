@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,17 +57,20 @@ public class CapFragment extends Fragment {
         okcapBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int cap = Integer.parseInt(capET.getText().toString());
-                int mcap = Integer.parseInt(mcapET.getText().toString());
-                int res = cap * 20/ mcap;
-                rescapTV.setText(String.valueOf(res) + " капель в мин");
-                if (capSPN.getSelectedItem().toString() != null){
-                    List<Pacient> pacients1 = new ArrayList<>();
-                    pacients1.addAll(pacientDao.getWithName(capSPN.getSelectedItem().toString()));
-                    pacients1.get(0).cap = res;
-                    pacientDao.update(pacients1.get(0));
+                if (capET.getText().toString().isEmpty() == false & mcapET.getText().toString().isEmpty() == false) {
+                    int cap = Integer.parseInt(capET.getText().toString());
+                    int mcap = Integer.parseInt(mcapET.getText().toString());
+                    int res = cap * 20/ mcap;
+                    rescapTV.setText(String.valueOf(res) + " капель в мин");
+                    if (capSPN.getSelectedItem().toString() != null){
+                        List<Pacient> pacients1 = new ArrayList<>();
+                        pacients1.addAll(pacientDao.getWithName(capSPN.getSelectedItem().toString()));
+                        pacients1.get(0).cap = res;
+                        pacientDao.update(pacients1.get(0));
+                    } else {
+                        Toast.makeText(getContext(), "Введите значения!", Toast.LENGTH_LONG).show();
+                    }
                 }
-
             }
         });
 
