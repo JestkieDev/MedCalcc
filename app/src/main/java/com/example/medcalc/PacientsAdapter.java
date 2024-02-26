@@ -1,7 +1,6 @@
-package com.example.medcalc.ui;
+package com.example.medcalc;
 
 import android.content.Context;
-import android.content.PeriodicSync;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +9,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medcalc.R;
 import com.example.medcalc.db.Pacient;
+import com.example.medcalc.ui.PacientFragment;
 
 import java.util.ArrayList;
 

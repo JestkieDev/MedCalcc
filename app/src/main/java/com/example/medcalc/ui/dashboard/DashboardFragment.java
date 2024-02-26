@@ -5,22 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medcalc.R;
-import com.example.medcalc.databinding.FragmentDashboardBinding;
 import com.example.medcalc.db.MainDb;
 import com.example.medcalc.db.Pacient;
 import com.example.medcalc.db.PacientDao;
 import com.example.medcalc.ui.AddFragment;
-import com.example.medcalc.ui.InfFragment;
-import com.example.medcalc.ui.PacientsAdapter;
+import com.example.medcalc.PacientsAdapter;
 
 import java.util.ArrayList;
 
