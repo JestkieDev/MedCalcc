@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,10 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.medcalc.R;
+import com.example.medcalc.db.MainDb;
+import com.example.medcalc.db.Pacient;
+import com.example.medcalc.db.PacientDao;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DefFragment extends Fragment {
+    MainDb mainDb;
+    PacientDao pacientDao;
+    List<Pacient> pacients;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +37,22 @@ public class DefFragment extends Fragment {
         Button okdefBTN = view.findViewById(R.id.okdefBTN);
         TextView resdefTV = view.findViewById(R.id.resdefTV);
         Button backBTN = view.findViewById(R.id.backdefBTN);
+        Spinner defSPN = view.findViewById(R.id.defSPN);
+        mainDb = MainDb.getINSTANCE(getContext());
+        ArrayList<String> pacientNames = new ArrayList<>();
+        pacientDao = mainDb.pacientDao();
+        pacients = new ArrayList<>();
+        if (pacientDao.getAll() != null){
+            pacients = pacientDao.getAll();
+        }
+        for (int i = 0; i < pacients.size(); i++){
+            pacientNames.add(pacients.get(i).name);
+        }
+        ArrayAdapter<String> arrayAdapter;
+        arrayAdapter =  new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pacientNames);
+        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        defSPN.setAdapter(arrayAdapter);
+
 
         okdefBTN.setOnClickListener(new View.OnClickListener() {
             @Override

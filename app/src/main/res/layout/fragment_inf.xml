@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/infSPN"
         android:layout_width="233dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+        app:layout_constraintTop_toBottomOf="@+id/infSPN" />
 
     <TextView
         android:id="@+id/resinfTV"

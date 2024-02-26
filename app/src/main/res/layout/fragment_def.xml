@@ -54,10 +54,10 @@
         android:text="Рассчитать!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/defSPN" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/defSPN"
         android:layout_width="258dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
