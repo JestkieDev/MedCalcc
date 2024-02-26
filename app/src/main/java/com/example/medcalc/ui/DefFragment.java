@@ -68,8 +68,12 @@ public class DefFragment extends Fragment {
                 } else if (res < 0) {
                     resdefTV.setText("Гиперкалиемия");
                 }
-
-
+                if (defSPN.getSelectedItem().toString() != null){
+                    List<Pacient> pacients1 = new ArrayList<>();
+                    pacients1.addAll(pacientDao.getWithName(defSPN.getSelectedItem().toString()));
+                    pacients1.get(0).def = res;
+                    pacientDao.update(pacients1.get(0));
+                }
             }
         });
         backBTN.setOnClickListener(new View.OnClickListener() {

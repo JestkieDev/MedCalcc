@@ -60,6 +60,12 @@ public class CapFragment extends Fragment {
                 int mcap = Integer.parseInt(mcapET.getText().toString());
                 int res = cap * 20/ mcap;
                 rescapTV.setText(String.valueOf(res) + " капель в мин");
+                if (capSPN.getSelectedItem().toString() != null){
+                    List<Pacient> pacients1 = new ArrayList<>();
+                    pacients1.addAll(pacientDao.getWithName(capSPN.getSelectedItem().toString()));
+                    pacients1.get(0).cap = res;
+                    pacientDao.update(pacients1.get(0));
+                }
 
             }
         });

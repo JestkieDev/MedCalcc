@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
                         .replace(R.id.nav_host_fragment_activity_main,infFragment)
                         .addToBackStack(null)
                         .commit();
+
             }
         });
 

@@ -64,6 +64,12 @@ public class InfFragment extends Fragment {
                 double res = (double) minf*doz / (mg* (1000.0/ml))*60;
                 DecimalFormat df = new DecimalFormat("###.##");
                 resinfTV.setText(df.format(res) + " мл/ч");
+                if (infSPN.getSelectedItem().toString() != null){
+                    List<Pacient> pacients1 = new ArrayList<>();
+                    pacients1.addAll(pacientDao.getWithName(infSPN.getSelectedItem().toString()));
+                    pacients1.get(0).nf = res;
+                    pacientDao.update(pacients1.get(0));
+                }
             }
         });
 

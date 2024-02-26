@@ -65,6 +65,12 @@ public class ImtFragment extends Fragment {
                 double res = mass/Math.pow(height, 2);
                 DecimalFormat df = new DecimalFormat("###.#");
                 reimtTV.setText(df.format(res));
+                if (imtSPN.getSelectedItem().toString() != null){
+                    List<Pacient> pacients1 = new ArrayList<>();
+                    pacients1.addAll(pacientDao.getWithName(imtSPN.getSelectedItem().toString()));
+                    pacients1.get(0).imt = res;
+                    pacientDao.update(pacients1.get(0));
+                }
             }
         });
 
